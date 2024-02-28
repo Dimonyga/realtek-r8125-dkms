@@ -2658,7 +2658,7 @@ static void rtl8125_proc_module_init(void)
 static int rtl8125_proc_open(struct inode *inode, struct file *file)
 {
         struct net_device *dev = proc_get_parent_data(inode);
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,17,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,14,0)
         int (*show)(struct seq_file *, void *) = pde_data(inode);
 #else
         int (*show)(struct seq_file *, void *) = PDE_DATA(inode);
@@ -6572,7 +6572,7 @@ rtl8125_set_ring_size(struct rtl8125_private *tp, u32 rx, u32 tx)
 }
 
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,0)
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,17,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,14,0)
 static void rtl8125_get_ringparam(struct net_device *dev,
                                   struct ethtool_ringparam *ring,
                                   struct kernel_ethtool_ringparam *kernel_ring,
@@ -6590,7 +6590,7 @@ static void rtl8125_get_ringparam(struct net_device *dev,
         ring->tx_pending = tp->tx_ring[0].num_tx_desc;
 }
 
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,17,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,14,0)
 static int rtl8125_set_ringparam(struct net_device *dev,
                                  struct ethtool_ringparam *ring,
                                  struct kernel_ethtool_ringparam *kernel_ring,
@@ -17377,7 +17377,7 @@ rtl8125_init_one(struct pci_dev *pdev,
                         dev->features |= NETIF_F_TSO6;
                         break;
                 };
-#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,19,0)
+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,14,0)
                 netif_set_tso_max_size(dev, LSO_64K);
                 netif_set_tso_max_segs(dev, NIC_MAX_PHYS_BUF_COUNT_LSO2);
 #else //LINUX_VERSION_CODE >= KERNEL_VERSION(5,19,0)
